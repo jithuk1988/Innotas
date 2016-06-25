@@ -14,6 +14,7 @@ import jxl.read.biff.BiffException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.Rectangle;
@@ -21,13 +22,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.SendKeysAction;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.Select;
 
 
 public class Defclass {
 	
-	   public static void main(String[] args)
+	   public static void main(String[] args) throws InterruptedException
 	   
 	   {
 	   
@@ -94,10 +96,10 @@ public class Defclass {
 	          
 	      //    WebElement user=driver.findElement(By.id("ContentPlaceHolder1_txtusername"));   //Element Id of Username field
 	         WebElement user=driver.findElement(By.name("login")); 
-	          user.sendKeys("v5new6");
+	          user.sendKeys(username);
 	      //   WebElement pass=driver.findElement(By.id("ContentPlaceHolder1_txtpassword"));   //Element Id of Password field
 	          WebElement pass=driver.findElement(By.name("password"));
-	          pass.sendKeys("innotas");
+	          pass.sendKeys(password);
 	          long start = System.currentTimeMillis();
 
 
@@ -125,112 +127,8 @@ driver.findElement(By.xpath("//input[@name='parentId']")).click();
 
 	 
 	     driver.findElement(By.xpath("//span[text()='Next']")).click();
-	     WebElement txt=new WebElement() {
-			
-			@Override
-			public <X> X getScreenshotAs(OutputType<X> arg0) throws WebDriverException {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public void submit() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void sendKeys(CharSequence... arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public boolean isSelected() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public boolean isEnabled() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public boolean isDisplayed() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public String getText() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public String getTagName() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Dimension getSize() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Rectangle getRect() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Point getLocation() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public String getCssValue(String arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public String getAttribute(String arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public List<WebElement> findElements(By arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public WebElement findElement(By arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public void click() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void clear() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
-		txt.sendKeys("new");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//WebDriverWait newwait=new WebDriverWait(driver, 10);
 	    // driver.findElement(By.Xpath("//span[@class='x-btn-icon-el createActionIcon']")).click();
 	       //   driver.findElement(By.ByClassName.className("btn btn-cta btn-block")).click();
 	          //WebDriverWait newwait=new WebDriverWait(driver, 2);
@@ -244,8 +142,33 @@ driver.findElement(By.xpath("//input[@name='parentId']")).click();
 	          	}
 	          driver.findElement(By.xpath(".//*[@id='ContentPlaceHolder1_ImageButton2']")).click();  //Logout
 	          System.out.println("Logout Success ");*/
-	        //  driver.close();
-	  
+	
+		//driver.findElement(By.xpath("//span[@data-qtip='The title of the Project' and text()='Title']")).click();
+		//driver.findElement(By.xpath("//span[@data-qtip='The title of the Project' and text()='Title']")).sendKeys(Keys.F2);
+	       //  driver.close();
+
+WebElement Title = driver.findElement(By.xpath("//input[@role='textbox' and @maxlength='80']"));
+Title.sendKeys("New");
+Title.sendKeys(Keys.TAB);
+Title.sendKeys(Keys.TAB);
+WebElement Owner = driver.findElement(By.xpath("//div[@class='x-trigger-index-0 x-form-trigger x-form-trigger-more x-form-trigger-first']"));
+Owner.click();
+/*WebElement SearchOwner = driver.findElement(By.xpath("//input[@placeholder='Search by...']"));
+SearchOwner.sendKeys("Ebert, Colin");
+WebDriverWait wait = new WebDriverWait(driver, 4);
+WebElement elementq = wait.equals(arg0)
+SearchOwner.sendKeys(Keys.TAB);
+WebDriverWait wait1 = new WebDriverWait(driver, 4);
+SearchOwner.sendKeys(Keys.TAB);
+WebDriverWait wait2 = new WebDriverWait(driver, 4);*/
+driver.findElement(By.xpath("//div[text()='Ebert, Colin' and @unselectable='on']")).click();
+driver.findElement(By.xpath("//span[text()='Select']")).click();
+Owner.sendKeys(Keys.TAB);
+Owner.sendKeys(Keys.TAB);
+Owner.sendKeys(Keys.ENTER);
+WebElement Save=driver.findElement(By.xpath("//span[text()='Save']"));
+Save.click();
+
 	      }
 
 }
