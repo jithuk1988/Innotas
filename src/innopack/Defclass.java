@@ -14,6 +14,7 @@ import jxl.read.biff.BiffException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
@@ -22,6 +23,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.SendKeysAction;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.Select;
@@ -166,10 +168,17 @@ driver.findElement(By.xpath("//span[text()='Select']")).click();
 Owner.sendKeys(Keys.TAB);
 Owner.sendKeys(Keys.TAB);
 Owner.sendKeys(Keys.ENTER);
-WebElement Save=driver.findElement(By.xpath("//span[text()='Save']"));
-Save.click();
+//driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, "s"));
+WebElement Save1=driver.findElement(By.xpath("//span[@class='x-btn-inner x-btn-inner-center' and starts-with(@id,'button') and text()='Save']"));
+//Actions action = new Actions(driver);
+//action.moveToElement(Save).click().perform();
+//JavascriptExecutor jsa =(JavascriptExecutor)driver;
+//jsa.executeScript("window.scrollTo(0,'Save1.getLocation().x')");
+((JavascriptExecutor)driver).executeScript("window.scrollTo(0,'+Save1.getLocation().y+')");
+Save1.click();
 
-	      }
+	      } 
+	   
 
 }
 
